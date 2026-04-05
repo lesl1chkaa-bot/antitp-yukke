@@ -1,0 +1,247 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ANTI TP BY YUKKE — Загрузка</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-start: #0f172a;
+      --bg-end: #111827;
+      --card-bg: rgba(255, 255, 255, 0.06);
+      --card-stroke: rgba(255, 255, 255, 0.18);
+      --accent: #22d3ee;
+      --accent-2: #a78bfa;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      background: radial-gradient(circle at 20% 20%, rgba(34, 211, 238, 0.15), transparent 35%),
+                  radial-gradient(circle at 80% 10%, rgba(167, 139, 250, 0.18), transparent 40%),
+                  linear-gradient(135deg, var(--bg-start), var(--bg-end));
+      color: var(--text);
+      font-family: 'Space Grotesk', 'Segoe UI', system-ui, -apple-system, sans-serif;
+      padding: 32px 18px;
+    }
+
+    .shell {
+      width: min(980px, 100%);
+      background: var(--card-bg);
+      border: 1px solid var(--card-stroke);
+      border-radius: 18px;
+      padding: 32px;
+      backdrop-filter: blur(14px);
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .shell::before, .shell::after {
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(60px);
+      opacity: 0.45;
+      z-index: 0;
+    }
+
+    .shell::before {
+      width: 260px; height: 260px;
+      background: var(--accent);
+      top: -120px; right: -80px;
+    }
+
+    .shell::after {
+      width: 220px; height: 220px;
+      background: var(--accent-2);
+      bottom: -140px; left: -60px;
+    }
+
+    header {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(28px, 3vw, 42px);
+      letter-spacing: 0.02em;
+    }
+
+    .badge {
+      border: 1px solid var(--card-stroke);
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--muted);
+      font-size: 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .badge span {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 0 12px rgba(34, 211, 238, 0.65);
+    }
+
+    .card {
+      position: relative;
+      z-index: 1;
+      background: rgba(17, 24, 39, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 22px 22px 18px;
+      margin-top: 14px;
+    }
+
+    p {
+      margin: 0 0 14px 0;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 16px;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      margin: 10px 0 4px;
+    }
+
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #0b1220;
+      font-weight: 700;
+      border: none;
+      border-radius: 14px;
+      padding: 14px 18px;
+      text-decoration: none;
+      box-shadow: 0 18px 40px rgba(34, 211, 238, 0.28);
+      transition: transform 160ms ease, box-shadow 160ms ease;
+    }
+
+    .cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 22px 46px rgba(167, 139, 250, 0.35);
+    }
+
+    .cta:active {
+      transform: translateY(0);
+    }
+
+    .ghost {
+      border: 1px solid var(--card-stroke);
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text);
+      box-shadow: none;
+    }
+
+    .list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 12px;
+      margin: 14px 0 4px;
+      padding: 0;
+      list-style: none;
+    }
+
+    .list li {
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1px dashed rgba(255, 255, 255, 0.16);
+      background: rgba(255, 255, 255, 0.02);
+      font-size: 15px;
+      color: var(--text);
+    }
+
+    code {
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: 6px;
+      padding: 2px 6px;
+      color: var(--text);
+      font-size: 13px;
+    }
+
+    footer {
+      margin-top: 18px;
+      font-size: 13px;
+      color: var(--muted);
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    @media (max-width: 540px) {
+      .shell { padding: 24px; }
+      .cta-row { flex-direction: column; align-items: stretch; }
+      .cta, .ghost { width: 100%; text-align: center; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header>
+      <h1>ANTI TP BY YUKKE</h1>
+      <div class="badge"><span></span> Актуальный билд</div>
+    </header>
+
+    <p>Небольшая страница для скачивания сборки. Ссылка ведёт напрямую на архив, готовый к распаковке в WinRAR.</p>
+
+    <div class="card">
+      <div class="cta-row">
+        <a class="cta" href="https://www.dropbox.com/scl/fi/d15wiu2ql7vx96snd8h4y/AntiTP_Yukee.rar?rlkey=6tn8drkoh0l2kag99v8o69uzp&amp;st=pejra6qv&amp;dl=1" target="_blank" rel="noopener">Скачать архив (WinRAR)</a>
+      </div>
+      <p>Если браузер блокирует загрузку, откройте ссылку в новом окне и разрешите скачивание вручную.</p>
+      <ul class="list">
+        <li><strong>Архив:</strong> AntiTP_Yukee.rar</li>
+        <li><strong>Формат:</strong> WinRAR архив (.rar)</li>
+        <li><strong>Пароль:</strong> 1488</li>
+        <li><strong>Совет:</strong> перед запуском проверьте архив антивирусом.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <p><strong>Инструкция:</strong></p>
+      <ol class="list" style="grid-template-columns: 1fr;">
+        <li>Нажмите «Скачать архив (WinRAR)».</li>
+        <li>После загрузки распакуйте архив с помощью WinRAR.</li>
+        <li>Запустите программу из распакованной папки.</li>
+      </ol>
+    </div>
+
+    <footer>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-bottom:10px;">
+        <a class="ghost" style="text-decoration:none;padding:10px 14px;border-radius:12px;" href="https://www.youtube.com/@yukkkkee" target="_blank" rel="noopener">YouTube</a>
+        <a class="ghost" style="text-decoration:none;padding:10px 14px;border-radius:12px;" href="https://www.twitch.tv/yukkkkee" target="_blank" rel="noopener">Twitch</a>
+        <a class="ghost" style="text-decoration:none;padding:10px 14px;border-radius:12px;" href="https://t.me/yukkkkee" target="_blank" rel="noopener">Telegram</a>
+      </div>
+      Файл предоставляется «как есть». Проверяйте совместимость и безопасность перед использованием.
+    </footer>
+  </div>
+
+</body>
+</html>
